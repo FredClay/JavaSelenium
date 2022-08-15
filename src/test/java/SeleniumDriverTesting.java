@@ -21,6 +21,7 @@ public class SeleniumDriverTesting {
     @BeforeEach
     void setup() {
         this.driver = new EdgeDriver();
+        this.driver.manage().window().maximize();
     }
 
     @Test
@@ -50,7 +51,7 @@ public class SeleniumDriverTesting {
         WebElement topResult = this.driver
                 .findElement(By.cssSelector("#center_column > ul > li:nth-child(1) > div > div.right-block > h5 > a"));
         Actions action = new Actions(this.driver);
-        action.moveToElement(topResult);
+        action.moveToElement(topResult).perform();
 
         WebElement addToCartBtn = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.cssSelector("#center_column > ul > li:nth-child(1) > div > div.right-block > div.button-container > " +
