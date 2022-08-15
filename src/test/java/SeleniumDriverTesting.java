@@ -57,9 +57,52 @@ public class SeleniumDriverTesting {
 
         addToCartBtn.click();
 
+        // start proceeding through the pages.
+        WebElement proceedButton = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("#layer_cart > div.clearfix > div.layer_cart_cart.col-xs-12.col-md-6 > div.button-container > a")));
+        proceedButton.click();
+
+        WebElement proceedButton2 = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("#center_column > p.cart_navigation.clearfix > a.button.btn.btn-default.standard-checkout.button-medium")));
+        proceedButton2.click();
+
+        // login here.
+        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#email")));
+        WebElement psswordField = this.driver.findElement(By.cssSelector("#passwd"));
+
+        emailField.sendKeys("scoobydoo1@gmail.com");
+        psswordField.sendKeys("scoob");
+
+        // keep proceeding.
+        WebElement signInButton = this.driver.findElement(By.cssSelector("#SubmitLogin"));
+        signInButton.click();
+
+        WebElement proceedButton3 = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("#center_column > form > p > button")));
+        proceedButton3.click();
+
+        WebElement tosChecker = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("#uniform-cgv")));
+        tosChecker.click();
+
+        WebElement proceedButton4 = this.driver.findElement(By.cssSelector("#form > p > button"));
+        proceedButton4.click();
+
+        // pay here.
+        WebElement payByWire = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("#HOOK_PAYMENT > div:nth-child(1) > div > p > a")));
+        payByWire.click();
+
+        WebElement confirmButton = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("#cart_navigation > button")));
+        confirmButton.click();
+
+        // make assertion.
         WebElement checkField = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.cssSelector("#layer_cart > div.clearfix > div.layer_cart_product.col-xs-12.col-md-6 > h2")));
-        assertEquals("Product successfully added to your shopping cart", checkField.getText());
+                .visibilityOfElementLocated(By.cssSelector("#center_column > div > p > strong")));
+
+        assertEquals("Your order on My Store is complete.", checkField.getText());
+
     }
 
     @AfterEach
