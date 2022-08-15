@@ -51,14 +51,14 @@ public class FTSE100Testing {
         WebElement acceptCookiesButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#acceptCookieButton")));
         acceptCookiesButton.click();
 
-        WebElement risersButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#view-constituents > ul > li:nth-child(3) > a")));
-        risersButton.click();
+        WebElement fallersButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#view-constituents > ul > li:nth-child(3) > a")));
+        fallersButton.click();
 
 
-        WebElement nameOfLargestRiser = wait.until(ExpectedConditions
+        WebElement nameOfLargestFaller = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.cssSelector("#ls-row-HLN-L > td.name-col.align-left > a")));
 
-        assertEquals("Haleon plc", nameOfLargestRiser.getText());
+        assertEquals("Haleon plc", nameOfLargestFaller.getText());
     }
 
     @AfterEach
