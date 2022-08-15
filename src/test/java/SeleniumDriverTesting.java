@@ -40,6 +40,9 @@ public class SeleniumDriverTesting {
     @Test
     void checkOutTest() {
         this.driver.get("http://automationpractice.com/index.php");
+
+        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(20));
+
         WebElement searchBox = this.driver.findElement(By.id("search_query_top"));
         searchBox.sendKeys("dress");
         searchBox.sendKeys(Keys.ENTER);
@@ -48,8 +51,6 @@ public class SeleniumDriverTesting {
                 .findElement(By.cssSelector("#center_column > ul > li:nth-child(1) > div > div.right-block > h5 > a"));
         Actions action = new Actions(this.driver);
         action.moveToElement(topResult);
-
-        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(20));
 
         WebElement addToCartBtn = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.cssSelector("#center_column > ul > li:nth-child(1) > div > div.right-block > div.button-container > " +
